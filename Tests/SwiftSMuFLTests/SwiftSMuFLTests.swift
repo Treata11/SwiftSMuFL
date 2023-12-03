@@ -22,20 +22,51 @@ final class SwiftSMuFLTests: XCTestCase {
         // https://developer.apple.com/documentation/xctest/defining_test_cases_and_test_methods
     }
     
+    /**
+     A simple script that decodes the `glyphnames.json` data  and returns variable with type String that
+     encapsulate only the **codepoints**.
+     */
     func testGenerateSymbols() throws {
         let decoder = JSONDecoder()
         
         let decoded = try decoder.decode([String: GlyphName].self, from: JSONString.glyphnames.data(using: .utf8)!)
         
-        print("struct GlyphNames {")
+        // Generate the Swift struct
+        print("struct MusicSymbols {")
         for (name, data) in decoded {
+//            let description = data.description.replacingOccurrences(of: "\"", with: "\\\"")
+            print("    /// \(data.description)")
             if let alternateCodepoint = data.alternateCodepoint {
-                print("    static let \(name): String = \"\\u{\(alternateCodepoint.split(separator: "+").last!)\"")
+                print("    static let \(name): String = \"\\u{\(alternateCodepoint.split(separator: "+").last!)}\"")
             } else {
-                print("    static let \(name): String = \"\\u{\(data.codepoint.split(separator: "+").last!)\"")
+                print("    static let \(name): String = \"\\u{\(data.codepoint.split(separator: "+").last!)}\"")
             }
         }
         print("}")
     }
-    
+   
+    /**
+     A script to decode the `glyphnames.json` data back to swift-structured data in a manner that it is
+     almost reversable back to json.
+     
+     > Some vars are store in the original json model with digits in the beginning of their names which is
+     ofcourse not possible in swift. They are very few, and they are renamed.
+     */
+    func testGenerateGlyphNames() throws {
+        let decoder = JSONDecoder()
+        
+        let decoded = try decoder.decode([String: GlyphName].self, from: JSONString.glyphnames.data(using: .utf8)!)
+        
+        print("struct GlyphNames {")
+          for (name, data) in decoded {
+              var codepointString = ""
+              if let alternateCodepoint = data.alternateCodepoint {
+                  codepointString = "\"\\u{\(alternateCodepoint.split(separator: "+").last!)}\""
+              } else {
+                  codepointString = "nil"
+              }
+              print("    static let \(name): GlyphName = GlyphName(alternateCodepoint: \(codepointString), codepoint: \"\\u{\(data.codepoint.split(separator: "+").last!)}\", description: \"\(data.description)\")")
+          }
+          print("}")
+    }
 }
