@@ -65,7 +65,7 @@ final class SwiftSMuFLTests: XCTestCase {
               } else {
                   codepointString = "nil"
               }
-              print("    static let \(name): GlyphName = GlyphName(alternateCodepoint: \(codepointString), codepoint: \"\\u{\(data.codepoint.split(separator: "+").last!)}\", description: \"\(data.description)\")")
+              print("    public static let \(name): GlyphName = GlyphName(alternateCodepoint: \(codepointString), codepoint: \"\\u{\(data.codepoint.split(separator: "+").last!)}\", description: \"\(data.description)\")")
           }
           print("}")
     }

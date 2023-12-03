@@ -12,24 +12,24 @@
 
 // MARK: - class model
 
-struct Class: Codable {
+public struct Class: Codable {
     
 }
 
 // MARK: - glyphname model
 
-struct GlyphName: Codable {
-    let codepoint: String
-    let alternateCodepoint: String?
-    let description: String
+public struct GlyphName: Codable {
+    public let codepoint: String
+    public let alternateCodepoint: String?
+    public let description: String
     
-    init(alternateCodepoint: String? = nil, codepoint: String, description: String) {
+    public init(alternateCodepoint: String? = nil, codepoint: String, description: String) {
         self.alternateCodepoint = alternateCodepoint
         self.codepoint = codepoint
         self.description = description
     }
     
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.codepoint = try container.decode(String.self, forKey: .codepoint)
         self.alternateCodepoint = try container.decodeIfPresent(String.self, forKey: .alternateCodepoint)
@@ -39,6 +39,6 @@ struct GlyphName: Codable {
 
 // MARK: - range model
 
-struct Range: Codable {
+public struct Range: Codable {
     
 }
