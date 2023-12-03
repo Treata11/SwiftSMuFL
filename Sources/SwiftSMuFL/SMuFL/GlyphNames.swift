@@ -6,7 +6,8 @@
  Created by Treata on 12/2/23.
  
  Abstract:
- Holds all the metadata decoded from `glyphnames.json` model.
+ Holds all the `glyphnames`-related metadata decoded from `glyphnames.json`
+ model.
 */
 
 /**

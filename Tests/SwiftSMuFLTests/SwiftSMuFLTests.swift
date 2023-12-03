@@ -22,6 +22,9 @@ final class SwiftSMuFLTests: XCTestCase {
         // https://developer.apple.com/documentation/xctest/defining_test_cases_and_test_methods
     }
     
+    // MARK: - SMuFL
+    
+    // MARK: GlyphNames
     /**
      A simple script that decodes the `glyphnames.json` data  and returns variable with type String that
      encapsulate only the **codepoints**.
@@ -70,7 +73,21 @@ final class SwiftSMuFLTests: XCTestCase {
           print("}")
     }
     
-    func testGenerateBravuraSymbols() {
-        
+    // MARK: - Bravura
+    
+    func testGenerateBravuraSymbols() throws {
+        let decoder = JSONDecoder()
+        /// glyphs
+        let decoded = try decoder.decode([String: GlyphWithAlternates].self, from: JSONString.Bravura.glyphnames.data(using: .utf8)!)
+
+        print("public struct BravuraGlyphsWithAlternates {")
+        for (name, data) in decoded {
+            print("    public static let \(name) = GlyphWithAlternates(alternates: [")
+            for alternate in data.alternates {
+                print("        GlyphWithAlternates.Alternate(codepoint: \"\\u{\(alternate.codepoint.split(separator: "+").last!)}\", name: \"\(alternate.name)\"),")
+            }
+            print("    ])")
+        }
+        print("}")
     }
 }

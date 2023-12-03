@@ -7,10 +7,10 @@
  
  Abstract:
  Simple Types that acts as the model of the Bravura's JSON metadata
- (GlyphsWithAlternates, ligatures, optionalGlyphs & sets).
+ (GlyphWithAlternates, ligatures, optionalGlyphs & sets).
 */
 
-public struct GlyphsWithAlternates: Codable {
+public struct GlyphWithAlternates: Codable {
     public let alternates: [Alternate]
     
     init(alternates: [Alternate]) {
@@ -19,11 +19,11 @@ public struct GlyphsWithAlternates: Codable {
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.alternates = try container.decode([GlyphsWithAlternates.Alternate].self, forKey: .alternates)
+        self.alternates = try container.decode([GlyphWithAlternates.Alternate].self, forKey: .alternates)
     }
 }
 
-extension GlyphsWithAlternates {
+extension GlyphWithAlternates {
     public struct Alternate: Codable {
         public let codepoint: String
         public let name: String
@@ -34,9 +34,9 @@ extension GlyphsWithAlternates {
         }
         
         public init(from decoder: Decoder) throws {
-            let container: KeyedDecodingContainer<GlyphsWithAlternates.Alternate.CodingKeys> = try decoder.container(keyedBy: GlyphsWithAlternates.Alternate.CodingKeys.self)
-            self.codepoint = try container.decode(String.self, forKey: GlyphsWithAlternates.Alternate.CodingKeys.codepoint)
-            self.name = try container.decode(String.self, forKey: GlyphsWithAlternates.Alternate.CodingKeys.name)
+            let container: KeyedDecodingContainer<GlyphWithAlternates.Alternate.CodingKeys> = try decoder.container(keyedBy: GlyphWithAlternates.Alternate.CodingKeys.self)
+            self.codepoint = try container.decode(String.self, forKey: GlyphWithAlternates.Alternate.CodingKeys.codepoint)
+            self.name = try container.decode(String.self, forKey: GlyphWithAlternates.Alternate.CodingKeys.name)
         }
     }
 }
