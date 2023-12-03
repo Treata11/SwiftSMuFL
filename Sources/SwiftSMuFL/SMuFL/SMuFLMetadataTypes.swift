@@ -1,12 +1,12 @@
 /*
  See the LICENSE file for this sample’s licensing information.
- MetadataTypes.swift
+ SMuFLMetadataTypes.swift
  SwiftSMuFL
 
  Created by Treata on 12/3/23.
  
  Abstract:
- Simple Types that act as the model of the JSON metadata
+ Simple Types that acts as the model of the SMuFL's JSON metadata
  (ranges, glyphnames & classes).
 */
 

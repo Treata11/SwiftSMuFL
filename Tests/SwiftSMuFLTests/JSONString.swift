@@ -13,7 +13,7 @@
  A simple struct storing String converted `JSON` data of the **SMuFL-Metadata**
  */
 struct JSONString {
-    
+    struct SMuFL {
     // MARK: - Classes
     
     static let classes = #"""
@@ -10031,5 +10031,8 @@ struct JSONString {
     static let ranges = #"""
 
     """#
+    }
+    
+    
 }
 

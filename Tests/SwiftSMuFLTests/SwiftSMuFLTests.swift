@@ -29,7 +29,7 @@ final class SwiftSMuFLTests: XCTestCase {
     func testGenerateSymbols() throws {
         let decoder = JSONDecoder()
         
-        let decoded = try decoder.decode([String: GlyphName].self, from: JSONString.glyphnames.data(using: .utf8)!)
+        let decoded = try decoder.decode([String: GlyphName].self, from: JSONString.SMuFL.glyphnames.data(using: .utf8)!)
         
         // Generate the Swift struct
         print("struct MusicSymbols {")
@@ -55,7 +55,7 @@ final class SwiftSMuFLTests: XCTestCase {
     func testGenerateGlyphNames() throws {
         let decoder = JSONDecoder()
         
-        let decoded = try decoder.decode([String: GlyphName].self, from: JSONString.glyphnames.data(using: .utf8)!)
+        let decoded = try decoder.decode([String: GlyphName].self, from: JSONString.SMuFL.glyphnames.data(using: .utf8)!)
         
         print("struct GlyphNames {")
           for (name, data) in decoded {
@@ -68,5 +68,9 @@ final class SwiftSMuFLTests: XCTestCase {
               print("    public static let \(name): GlyphName = GlyphName(alternateCodepoint: \(codepointString), codepoint: \"\\u{\(data.codepoint.split(separator: "+").last!)}\", description: \"\(data.description)\")")
           }
           print("}")
+    }
+    
+    func testGenerateBravuraSymbols() {
+        
     }
 }
