@@ -10,7 +10,8 @@
  `bravura-metadata(trimmed).json` model.
 */
 
-public struct OptionalGlyphs {
+public extension Bravura {
+struct OptionalGlyphs {
     public static let timeSigSlashNarrow = OptionalGlyph(classes: [
         ],
         codepoint: "\u{F528}",
@@ -2402,4 +2403,5 @@ public struct OptionalGlyphs {
         codepoint: "\u{F443}",
         description: "Time signature 3 (outside staff)"
     )
+}
 }

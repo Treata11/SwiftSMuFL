@@ -10,7 +10,8 @@
  `bravura-metadata(trimmed).json` model.
 */
 
-public struct GlyphsWithAlternates {
+public extension Bravura {
+    struct GlyphsWithAlternates {
     public static let articAccentStaccatoAbove = GlyphWithAlternates(alternates: [
         GlyphWithAlternates.Alternate(codepoint: "\u{F485}", name: "articAccentStaccatoAboveSmall"),
     ])
@@ -733,4 +734,5 @@ public struct GlyphsWithAlternates {
     public static let pictConga = GlyphWithAlternates(alternates: [
         GlyphWithAlternates.Alternate(codepoint: "\u{F4B1}", name: "pictCongaPeinkofer"),
     ])
+}
 }

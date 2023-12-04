@@ -10,7 +10,8 @@
  `bravura-metadata(trimmed).json` model.
 */
 
-public struct Ligatures {
+public extension Bravura {
+    struct Ligatures {
     public static let mensuralMinimaBlackStemUpFlagLeft = Ligature(codepoint: "\u{F595}",
         componentGlyphs: [
             "mensuralNoteheadSemibrevisBlack",
@@ -1318,4 +1319,5 @@ public struct Ligatures {
             "accidentalNatural",
         ],
         description: "G clef, natural 7 above")
+}
 }
