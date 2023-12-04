@@ -10,6 +10,8 @@
  (GlyphWithAlternates, ligatures, optionalGlyphs & sets).
 */
 
+// MARK: - Glyph With Alternate
+
 public struct GlyphWithAlternates: Codable {
     public let alternates: [Alternate]
     
@@ -23,7 +25,7 @@ public struct GlyphWithAlternates: Codable {
     }
 }
 
-extension GlyphWithAlternates {
+public extension GlyphWithAlternates {
     public struct Alternate: Codable {
         public let codepoint: String
         public let name: String
@@ -41,7 +43,27 @@ extension GlyphWithAlternates {
     }
 }
 
+// MARK: - Ligature
+
+public struct Ligature: Codable {
+    public let codepoint: String
+    public let componentGlyphs: [String]
+    public let description: String
     
-// ligatures
+    public init(codepoint: String, componentGlyphs: [String], description: String) {
+        self.codepoint = codepoint
+        self.componentGlyphs = componentGlyphs
+        self.description = description
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.codepoint = try container.decode(String.self, forKey: .codepoint)
+        self.componentGlyphs = try container.decode([String].self, forKey: .componentGlyphs)
+        self.description = try container.decode(String.self, forKey: .description)
+    }
+}
+    
+
 // optionalGlyphs
 // sets

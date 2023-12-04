@@ -90,4 +90,22 @@ final class SwiftSMuFLTests: XCTestCase {
         }
         print("}")
     }
+    
+    func testGenerateBravuraLigatures() throws {
+        let decoder = JSONDecoder()
+        /// Ligatures
+        let decoded = try decoder.decode([String: Ligature].self, from: JSONString.BravuraLigature.ligatures.data(using: .utf8)!)
+
+        print("public struct Ligatures {")
+        for (name, data) in decoded {
+            print("    public static let \(name) = Ligature(codepoint: \"\\u{\(data.codepoint.split(separator: "+").last!)}\", ")
+            print("        componentGlyphs: [")
+            for component in data.componentGlyphs {
+                print("            \"\(component)\", ")
+            }
+            print("        ], ")
+            print("        description: \"\(data.description)\")")
+        }
+        print("}")
+    }
 }
