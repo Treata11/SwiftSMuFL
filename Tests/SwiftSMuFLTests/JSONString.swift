@@ -53,8 +53,8 @@ struct JSONString {
         """#
     }
     
-    struct LelandGlyphNames {
-        static let glyphnames = """
+    struct LelandGlyphWithAlternates {
+        static let glyphWithAlternates = """
         {
             "brace": {
                 "alternates": [
@@ -219,6 +219,71 @@ struct JSONString {
                         "name": "noteheadDoubleWholeAlt"
                     }
                 ]
+            }
+        }
+        """
+    }
+    
+    struct LelandLigature {
+        static let ligatures = """
+        {
+            "accidentalDoubleFlatParens": {
+                "codepoint": "U+F5E4",
+                "componentGlyphs": [
+                    "accidentalParensLeft",
+                    "accidentalDoubleFlat",
+                    "accidentalParensRight"
+                ],
+                "description": "Parenthesised double flat"
+            },
+            "accidentalDoubleSharpParens": {
+                "codepoint": "U+F5E3",
+                "componentGlyphs": [
+                    "accidentalParensLeft",
+                    "accidentalDoubleSharp",
+                    "accidentalParensRight"
+                ],
+                "description": "Parenthesised double sharp"
+            },
+            "accidentalFlatParens": {
+                "codepoint": "U+F5E0",
+                "componentGlyphs": [
+                    "accidentalParensLeft",
+                    "accidentalFlat",
+                    "accidentalParensRight"
+                ],
+                "description": "Parenthesised flat"
+            },
+            "accidentalNaturalParens": {
+                "codepoint": "U+F5E1",
+                "componentGlyphs": [
+                    "accidentalParensLeft",
+                    "accidentalNatural",
+                    "accidentalParensRight"
+                ],
+                "description": "Parenthesised natural"
+            },
+            "accidentalSharpParens": {
+                "codepoint": "U+F5E2",
+                "componentGlyphs": [
+                    "accidentalParensLeft",
+                    "accidentalSharp",
+                    "accidentalParensRight"
+                ],
+                "description": "Parenthesised sharp"
+            }
+        }
+        """
+    }
+    
+    struct LelandOptionalGlyph {
+        static let optionalGlyphs = """
+        {
+            "sustainedBuzzRoll": {
+                "classes": [
+                    "stemDecorations"
+                ],
+                "codepoint": "U+F630"
             }
         }
         """

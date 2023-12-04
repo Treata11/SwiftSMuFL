@@ -1,12 +1,12 @@
 /*
  See the LICENSE file for this sample’s licensing information.
- GlyphsWithAlternates.swift
+ Bravura GlyphsWithAlternates.swift
  SwiftSMuFL
 
  Created by Treata on 12/3/23.
  
  Abstract:
- Holds all the `glyphsWithAlternates`-related metadata decoded from
+ Holds all the `glyphsWithAlternates`-related metadata for Bravura, decoded from
  `bravura-metadata(trimmed).json` model.
 */
 

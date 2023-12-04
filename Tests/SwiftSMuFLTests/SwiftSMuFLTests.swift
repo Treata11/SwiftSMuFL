@@ -55,32 +55,32 @@ final class SwiftSMuFLTests: XCTestCase {
      > Some vars are store in the original json model with digits in the beginning of their names which is
      ofcourse not possible in swift. They are very few, and they are renamed.
      */
-    func testGenerateGlyphNames() throws {
-        let decoder = JSONDecoder()
-        
-        let decoded = try decoder.decode([String: GlyphName].self, from: JSONString.SMuFL.glyphnames.data(using: .utf8)!)
-        
-        print("struct GlyphNames {")
-          for (name, data) in decoded {
-              var codepointString = ""
-              if let alternateCodepoint = data.alternateCodepoint {
-                  codepointString = "\"\\u{\(alternateCodepoint.split(separator: "+").last!)}\""
-              } else {
-                  codepointString = "nil"
-              }
-              print("    public static let \(name): GlyphName = GlyphName(alternateCodepoint: \(codepointString), codepoint: \"\\u{\(data.codepoint.split(separator: "+").last!)}\", description: \"\(data.description)\")")
-          }
-          print("}")
-    }
+//    func testGenerateGlyphNames() throws {
+//        let decoder = JSONDecoder()
+//        
+//        let decoded = try decoder.decode([String: GlyphName].self, from: JSONString.SMuFL.glyphnames.data(using: .utf8)!)
+//        
+//        print("struct GlyphNames {")
+//          for (name, data) in decoded {
+//              var codepointString = ""
+//              if let alternateCodepoint = data.alternateCodepoint {
+//                  codepointString = "\"\\u{\(alternateCodepoint.split(separator: "+").last!)}\""
+//              } else {
+//                  codepointString = "nil"
+//              }
+//              print("    public static let \(name): GlyphName = GlyphName(alternateCodepoint: \(codepointString), codepoint: \"\\u{\(data.codepoint.split(separator: "+").last!)}\", description: \"\(data.description)\")")
+//          }
+//          print("}")
+//    }
     
     // MARK: - Bravura
     
-    func testGenerateBravuraSymbols() throws {
+    func testGenerateGlyphWithAlternates() throws {
         let decoder = JSONDecoder()
         /// glyphs
-        let decoded = try decoder.decode([String: GlyphWithAlternates].self, from: JSONString.Bravura.glyphnames.data(using: .utf8)!)
+        let decoded = try decoder.decode([String: GlyphWithAlternates].self, from: JSONString.LelandGlyphWithAlternates.glyphWithAlternates.data(using: .utf8)!)
 
-        print("public struct BravuraGlyphsWithAlternates {")
+        print("public struct GlyphsWithAlternates {")
         for (name, data) in decoded {
             print("    public static let \(name) = GlyphWithAlternates(alternates: [")
             for alternate in data.alternates {
@@ -91,10 +91,10 @@ final class SwiftSMuFLTests: XCTestCase {
         print("}")
     }
     
-    func testGenerateBravuraLigatures() throws {
+    func testGenerateLigatures() throws {
         let decoder = JSONDecoder()
         /// Ligatures
-        let decoded = try decoder.decode([String: Ligature].self, from: JSONString.BravuraLigature.ligatures.data(using: .utf8)!)
+        let decoded = try decoder.decode([String: Ligature].self, from: JSONString.LelandLigature.ligatures.data(using: .utf8)!)
 
         print("public struct Ligatures {")
         for (name, data) in decoded {
@@ -109,10 +109,10 @@ final class SwiftSMuFLTests: XCTestCase {
         print("}")
     }
     
-    func testGenerateBravuraOptionalGlyphs() throws {
+    func testGenerateOptionalGlyphs() throws {
         let decoder = JSONDecoder()
         /// optionalGlyphs
-        let decoded = try decoder.decode([String: OptionalGlyph].self, from: JSONString.BravuraOptionalGlyph.optionalGlyphs.data(using: .utf8)!)
+        let decoded = try decoder.decode([String: OptionalGlyph].self, from: JSONString.LelandOptionalGlyph.optionalGlyphs.data(using: .utf8)!)
 
         print("public struct OptionalGlyphs {")
         for (name, data) in decoded {

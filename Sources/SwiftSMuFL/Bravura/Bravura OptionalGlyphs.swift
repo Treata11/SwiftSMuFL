@@ -1,12 +1,12 @@
 /*
  See the LICENSE file for this sample’s licensing information.
- OptionalGlyphs.swift
+ Bravura OptionalGlyphs.swift
  SwiftSMuFL
 
  Created by Treata on 12/4/23.
  
  Abstract:
- Holds all the `OptionalGlyphs`-related metadata decoded from
+ Holds all the `OptionalGlyphs`-related Bravura metadata, decoded from
  `bravura-metadata(trimmed).json` model.
 */
 

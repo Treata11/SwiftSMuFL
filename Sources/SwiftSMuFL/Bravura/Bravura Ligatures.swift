@@ -1,12 +1,12 @@
 /*
  See the LICENSE file for this sample’s licensing information.
- Ligatures.swift
+ Bravura Ligatures.swift
  SwiftSMuFL
 
  Created by Treata on 12/4/23.
  
  Abstract:
- Holds all the `ligatures`-related metadata decoded from
+ Holds all the `ligatures`-related Bravura metadata, decoded from
  `bravura-metadata(trimmed).json` model.
 */
 
