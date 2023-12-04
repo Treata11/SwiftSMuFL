@@ -64,6 +64,26 @@ public struct Ligature: Codable {
     }
 }
     
+// MARK: - Optional Glyph
+
+public struct OptionalGlyph: Codable {
+    public let classes: [String]?
+    public let codepoint: String
+    public let description: String?
+    
+    public init(classes: [String]? = nil, codepoint: String, description: String? = nil) {
+        self.classes = classes
+        self.codepoint = codepoint
+        self.description = description
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.classes = try container.decodeIfPresent([String].self, forKey: .classes)
+        self.codepoint = try container.decode(String.self, forKey: .codepoint)
+        self.description = try container.decodeIfPresent(String.self, forKey: .description)
+    }
+}
 
 // optionalGlyphs
 // sets

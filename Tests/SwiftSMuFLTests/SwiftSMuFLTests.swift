@@ -108,4 +108,35 @@ final class SwiftSMuFLTests: XCTestCase {
         }
         print("}")
     }
+    
+    func testGenerateBravuraOptionalGlyphs() throws {
+        let decoder = JSONDecoder()
+        /// optionalGlyphs
+        let decoded = try decoder.decode([String: OptionalGlyph].self, from: JSONString.BravuraOptionalGlyph.optionalGlyphs.data(using: .utf8)!)
+
+        print("public struct OptionalGlyphs {")
+        for (name, data) in decoded {
+            if let classes = data.classes {
+                print("    public static let \(name) = OptionalGlyph(classes: [")
+                for klass in classes {
+                    print("            \"\(klass)\", ")
+                }
+                print("        ],")
+                print("        codepoint: \"\\u{\(data.codepoint.split(separator: "+").last!)}\"\(data.description != nil ? ", " : "")")
+                if let description = data.description {
+                    print("        description: \"\(description)\"")
+                } else {
+                    print("    )")
+                }
+            } else {
+                print("    public static let \(name) = OptionalGlyph(")
+                print("        codepoint: \"\\u{\(data.codepoint.split(separator: "+").last!)}\"\(data.description != nil ? ", " : "")")
+                if let description = data.description {
+                    print("        description: \"\(description)\"")
+                }
+            }
+            print("    )")
+        }
+        print("}")
+    }
 }
